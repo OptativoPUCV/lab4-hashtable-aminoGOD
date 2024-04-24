@@ -64,22 +64,21 @@ void enlarge(HashMap * map) {
     map->size = 0;
     for(long i = 0 ; i < map->capacity/2; i++){
       if(buckets[i] != NULL && buckets[i]->key != NULL){
-        insertMap(map,buckets[i]->key,buckets[i]->value);
-        
+        insertMap(map,buckets[i]->key,buckets[i]->value); 
       }
-      
     }
     free(buckets);
-  
-  
-
-
 }
 
 
 HashMap * createMap(long capacity) {
+  HashMap * map = (HashMap *)malloc(sizeof(HashMap));
+  map->buckets = (Pair **)calloc(capacity,sizeof(Pair*));
+  map->capacity = capacity;
+  map->size = 0;
+  map->current = -1;
+  return map;
 
-    return NULL;
 }
 
 void eraseMap(HashMap * map,  char * key) {    
